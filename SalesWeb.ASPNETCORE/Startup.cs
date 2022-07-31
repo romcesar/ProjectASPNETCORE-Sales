@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using SalesWeb.ASPNETCORE.Data;
 
 namespace SalesWeb.ASPNETCORE
 {
@@ -24,7 +26,13 @@ namespace SalesWeb.ASPNETCORE
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-        }
+
+            services.AddDbContext<SalesWebASPNETCOREContext>(options =>
+                    options.UseNpgsql(Configuration.GetConnectionString("SalesWebASPNETCOREContext")));
+
+           // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+           //=> optionsBuilder.UseNpgsql("Host = localhost; Port=5432;Pooling=true;Database=dbTeste;User Id = 1; Password=123;");
+    }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
