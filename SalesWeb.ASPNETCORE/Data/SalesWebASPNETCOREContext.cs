@@ -14,6 +14,9 @@ namespace SalesWeb.ASPNETCORE.Data
         {
         }
 
-        public DbSet<SalesWeb.ASPNETCORE.Models.Entities.Departaments> Departaments { get; set; }
+        public DbSet<Departaments> Departaments { get; set; }
+
+        public DbSet<Sellers> sellers { get; set; }
+        public DbSet<SalesRecord> salesRecords { get; set; }
     }
 }

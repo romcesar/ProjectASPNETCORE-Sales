@@ -13,5 +13,20 @@ namespace SalesWeb.ASPNETCORE.Models.Entities
 
         public SalesStatus SalesStatus  { get; set; }
 
+        public Sellers sellers { get; set; }
+
+        public SalesRecord()
+        {
+
+        }
+
+        public SalesRecord(int id, DateTime date, double amount, SalesStatus salesStatus, Sellers sellers)
+        {
+            this.id = id;
+            this.date = date;
+            this.amount = amount;
+            SalesStatus = salesStatus;
+            this.sellers = sellers;
+        }
     }
 }
