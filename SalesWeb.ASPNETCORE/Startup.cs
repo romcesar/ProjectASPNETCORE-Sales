@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SalesWeb.ASPNETCORE.Data;
+using SalesWeb.ASPNETCORE.Service;
 
 namespace SalesWeb.ASPNETCORE
 {
@@ -30,16 +31,21 @@ namespace SalesWeb.ASPNETCORE
             services.AddDbContext<SalesWebASPNETCOREContext>(options =>
                     options.UseNpgsql(Configuration.GetConnectionString("SalesWebASPNETCOREContext")));
 
+            services.AddScoped<SeedingService>();
+
+            services.AddScoped<SellersService>();
+
            // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
            //=> optionsBuilder.UseNpgsql("Host = localhost; Port=5432;Pooling=true;Database=dbTeste;User Id = 1; Password=123;");
     }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seeding)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                seeding.Seed();
             }
             else
             {

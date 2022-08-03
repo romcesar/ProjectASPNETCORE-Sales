@@ -9,8 +9,8 @@ namespace SalesWeb.ASPNETCORE.Models.Entities
         public int id { get; set; }
         public string name { get; set; }
         public string email { get; set; }
-        public double baseSalary { get; set; }
         public DateTime bithDate { get; set; }
+        public double baseSalary { get; set; }
         public Departaments departaments { get; set; }
         public ICollection<SalesRecord> sales { get; set; } = new List<SalesRecord>();
 
@@ -19,7 +19,7 @@ namespace SalesWeb.ASPNETCORE.Models.Entities
 
         }
 
-        public Sellers(int id, string name, string email, double baseSalary, DateTime bithDate, Departaments departaments)
+        public Sellers(int id, string name, string email,DateTime bithDate, double baseSalary, Departaments departaments)
         {
             this.id = id;
             this.name = name;
