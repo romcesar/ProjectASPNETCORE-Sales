@@ -35,9 +35,11 @@ namespace SalesWeb.ASPNETCORE
 
             services.AddScoped<SellersService>();
 
-           // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-           //=> optionsBuilder.UseNpgsql("Host = localhost; Port=5432;Pooling=true;Database=dbTeste;User Id = 1; Password=123;");
-    }
+            services.AddScoped<DepartamentsService>();
+
+            // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            //=> optionsBuilder.UseNpgsql("Host = localhost; Port=5432;Pooling=true;Database=dbTeste;User Id = 1; Password=123;");
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seeding)

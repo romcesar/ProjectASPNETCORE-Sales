@@ -1,4 +1,4 @@
-﻿@model SalesWeb.ASPNETCORE.Models.Entities.Sellers
+﻿@model SalesWeb.ASPNETCORE.Models.ViewModel.SellerFormViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -12,20 +12,25 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div class="form-group">
-                <label asp-for="name" class="custom-control-label"></label>
-                <input asp-for="name" class="custom-control-label"></>
+                <label asp-for="Sellers.name" class="custom-control-label"></label>
+                <input asp-for="Sellers.name" class="custom-control-label"></>
             </div>
             <div class="form-group">
-                <label asp-for="email" class="custom-control-label"></label>
-                <input asp-for="email" class="custom-control-label"></>
+                <label asp-for="Sellers.email" class="custom-control-label"></label>
+                <input asp-for="Sellers.email" class="custom-control-label"></>
             </div>
             <div class="form-group">
-                <label asp-for="bithDate" class="custom-control-label"></label>
-                <input asp-for="bithDate" class="custom-control-label"></>
+                <label asp-for="Sellers.bithDate" class="custom-control-label"></label>
+                <input asp-for="Sellers.bithDate" class="custom-control-label"></>
             </div>
             <div class="form-group">
-                <label asp-for="baseSalary" class="custom-control-label"></label>
-                <input asp-for="baseSalary" class="custom-control-label"></>
+                <label asp-for="Sellers.baseSalary" class="custom-control-label"></label>
+                <input asp-for="Sellers.baseSalary" class="custom-control-label"></>
+            </div>
+             <div class="form-group">
+                <label asp-for="Sellers.DepartamentsId" class="control-label"></label>
+                <select asp-for="Sellers.DepartamentsId" 
+                   asp-items="@(new SelectList(Model.Departaments,"id","name"))" class="form-control"><</select>/>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-dark"/>

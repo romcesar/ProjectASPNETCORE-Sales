@@ -12,7 +12,8 @@ namespace SalesWeb.ASPNETCORE.Models.Entities
         public DateTime bithDate { get; set; }
         public double baseSalary { get; set; }
         public Departaments departaments { get; set; }
-        public ICollection<SalesRecord> sales { get; set; } = new List<SalesRecord>();
+		public int DepartamentsId { get; set; }
+		public ICollection<SalesRecord> sales { get; set; } = new List<SalesRecord>();
 
         public Sellers()
         {
