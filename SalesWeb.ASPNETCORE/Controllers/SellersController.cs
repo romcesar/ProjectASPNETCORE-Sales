@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SalesWeb.ASPNETCORE.Models.Entities;
 using SalesWeb.ASPNETCORE.Service;
 
 namespace SalesWeb.ASPNETCORE.Controllers
@@ -16,6 +17,19 @@ namespace SalesWeb.ASPNETCORE.Controllers
 			var list = _sellersService.FindAll();
 
 			return View(list);
+		}
+		[HttpGet]
+		public IActionResult Create()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult Create(Sellers sellers)
+		{
+			_sellersService.Insert(sellers);
+			return RedirectToAction(nameof(Index));
 		}
 	}
 }

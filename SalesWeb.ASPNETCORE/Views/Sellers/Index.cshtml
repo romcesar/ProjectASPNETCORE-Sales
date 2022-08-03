@@ -5,7 +5,9 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-
+<p>
+    <a asp-action="Create" class="btn btn-dark">Create New</a>
+</p>
 <table class="table table-striped table-hover">
     <thead>
         <tr class="border-success">
@@ -31,7 +33,8 @@
         <tr></tr>
     </thead>
     <tbody>
-        @foreach(var item in Model){
+        @foreach (var item in Model)
+        {
 
             <tr>
                 <td>
@@ -53,7 +56,7 @@
                     <a asp-action="Delete" asp-route="@item.id">Delete</a>
                 </td>
             </tr>
-            
+
         }
 
     </tbody>
