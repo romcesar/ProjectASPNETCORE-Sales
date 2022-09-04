@@ -1,0 +1,45 @@
+﻿@model SalesWeb.ASPNETCORE.Models.Entities.Sellers
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div>
+    <dl class="list-group-horizontal">
+        <dt>
+            @Html.DisplayNameFor(x=>x.name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(x=>x.name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(x=>x.email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(x=>x.email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(x=>x.bithDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(x=>x.bithDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(x=>x.baseSalary )
+        </dt>
+        <dd>
+            @Html.DisplayFor(x=>x.baseSalary)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(x=>x.departaments )
+        </dt>
+        <dd>
+            @Html.DisplayFor(x=>x.departaments.name)
+        </dd>
+    </dl>
+    <div>
+         <a asp-action="Edit" asp-route-id="@Model.id" class="btn btn-default">Edit</a>
+         <a asp-action="Index">Back to list</a>
+    </div>
+</div>

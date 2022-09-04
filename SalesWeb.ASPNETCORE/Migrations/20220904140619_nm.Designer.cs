@@ -10,8 +10,8 @@ using SalesWeb.ASPNETCORE.Data;
 namespace SalesWeb.ASPNETCORE.Migrations
 {
     [DbContext(typeof(SalesWebASPNETCOREContext))]
-    [Migration("20220802231502_OtherEntities")]
-    partial class OtherEntities
+    [Migration("20220904140619_nm")]
+    partial class nm
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace SalesWeb.ASPNETCORE.Migrations
 
             modelBuilder.Entity("SalesWeb.ASPNETCORE.Models.Entities.Departaments", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -31,7 +31,7 @@ namespace SalesWeb.ASPNETCORE.Migrations
                     b.Property<string>("name")
                         .HasColumnType("text");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Departaments");
                 });
@@ -59,7 +59,7 @@ namespace SalesWeb.ASPNETCORE.Migrations
 
                     b.HasIndex("sellersid");
 
-                    b.ToTable("salesRecords");
+                    b.ToTable("SalesRecords");
                 });
 
             modelBuilder.Entity("SalesWeb.ASPNETCORE.Models.Entities.Sellers", b =>
@@ -69,14 +69,14 @@ namespace SalesWeb.ASPNETCORE.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("DepartamentsId")
+                        .HasColumnType("integer");
+
                     b.Property<double>("baseSalary")
                         .HasColumnType("double precision");
 
                     b.Property<DateTime>("bithDate")
                         .HasColumnType("timestamp without time zone");
-
-                    b.Property<int?>("departamentsid")
-                        .HasColumnType("integer");
 
                     b.Property<string>("email")
                         .HasColumnType("text");
@@ -86,9 +86,9 @@ namespace SalesWeb.ASPNETCORE.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("departamentsid");
+                    b.HasIndex("DepartamentsId");
 
-                    b.ToTable("sellers");
+                    b.ToTable("Sellers");
                 });
 
             modelBuilder.Entity("SalesWeb.ASPNETCORE.Models.Entities.SalesRecord", b =>
@@ -102,7 +102,9 @@ namespace SalesWeb.ASPNETCORE.Migrations
                 {
                     b.HasOne("SalesWeb.ASPNETCORE.Models.Entities.Departaments", "departaments")
                         .WithMany("Sellers")
-                        .HasForeignKey("departamentsid");
+                        .HasForeignKey("DepartamentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,44 @@
+﻿@model SalesWeb.ASPNETCORE.Models.Entities.Sellers
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div>
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+    <h3> Are you sure you want to delete this ?</h3>
+
+    <dl class="list-group-horizontal">
+        <dt>
+            @Html.DisplayNameFor(x=>x.name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(x=>x.name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(x=>x.email)
+        </dt>
+         <dd>
+            @Html.DisplayFor(x=>x.email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(x=>x.bithDate)
+        </dt>
+         <dd>
+            @Html.DisplayFor(x=>x.bithDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(x=>x.baseSalary )
+        </dt>
+         <dd>
+            @Html.DisplayFor(x=>x.baseSalary)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" >
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Delete" class="btn btn-danger"/>
+        <a asp-action="Index" >Back to list</a>
+    </form>
+
+</div>

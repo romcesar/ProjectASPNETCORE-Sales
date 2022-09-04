@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SalesWeb.ASPNETCORE.Models.ViewModel
 {
-	public class SellerFormViewModel
+	public class SellersFormViewModel
 	{
 		public Sellers Sellers { get; set; }
 

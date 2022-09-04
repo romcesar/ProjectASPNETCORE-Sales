@@ -4,59 +4,57 @@
     ViewData["Title"] = "Sellers";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h2>@ViewData["Title"]</h2>
 <p>
-    <a asp-action="Create" class="btn btn-dark">Create New</a>
+    <a asp-action="Create" class="btn btn-dark"> Create New</a>
 </p>
+
 <table class="table table-striped table-hover">
     <thead>
-        <tr class="border-success">
+        <tr>
             <th>
                 @Html.DisplayNameFor(x=> x.name)
             </th>
-        </tr>
-        <tr>
+        
             <th>
                 @Html.DisplayNameFor(x=> x.email)
             </th>
-        </tr>
-        <tr>
             <th>
                 @Html.DisplayNameFor(x=> x.bithDate)
             </th>
-        </tr>
-        <tr>
             <th>
                 @Html.DisplayNameFor(x=> x.baseSalary)
             </th>
         </tr>
-        <tr></tr>
     </thead>
+
     <tbody>
         @foreach (var item in Model)
         {
-
             <tr>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.name)
                 </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.email)
                 </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.bithDate)
                 </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.baseSalary)
                 </td>
 
                 <td>
-                    <a asp-action="Edit" asp-route="@item.id">Edit</a>
-                    <a asp-action="Details" asp-route="@item.id">Details</a>
-                    <a asp-action="Delete" asp-route="@item.id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
                 </td>
             </tr>
-
         }
 
     </tbody>

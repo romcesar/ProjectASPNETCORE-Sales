@@ -34,7 +34,7 @@ namespace SalesWeb.ASPNETCORE.Controllers
             }
 
             var departaments = await _context.Departaments
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (departaments == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace SalesWeb.ASPNETCORE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,name")] Departaments departaments)
         {
-            if (id != departaments.id)
+            if (id != departaments.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace SalesWeb.ASPNETCORE.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DepartamentsExists(departaments.id))
+                    if (!DepartamentsExists(departaments.Id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace SalesWeb.ASPNETCORE.Controllers
             }
 
             var departaments = await _context.Departaments
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (departaments == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace SalesWeb.ASPNETCORE.Controllers
 
         private bool DepartamentsExists(int id)
         {
-            return _context.Departaments.Any(e => e.id == id);
+            return _context.Departaments.Any(e => e.Id == id);
         }
     }
 }

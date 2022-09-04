@@ -5,21 +5,21 @@ using System.Linq;
 
 namespace SalesWeb.ASPNETCORE.Data
 {
-	public class SeedingService
-	{
-		private SalesWebASPNETCOREContext _context;
+    public class SeedingService
+    {
+        private SalesWebASPNETCOREContext _context;
 
-		public SeedingService(SalesWebASPNETCOREContext context)
-		{
-			_context = context;
-		}
+        public SeedingService(SalesWebASPNETCOREContext context)
+        {
+            _context = context;
+        }
 
-		public void Seed()
-		{
-			if(_context.Departaments.Any() || _context.Sellers.Any() || _context.SalesRecords.Any()) // Se já existe algum dado no meu DB
-			{
-				return; 
-			}
+        public void Seed()
+        {
+            if (_context.Departaments.Any() || _context.Sellers.Any() || _context.SalesRecords.Any()) // Se já existe algum dado no meu DB
+            {
+                return;
+            }
 
             Departaments d1 = new Departaments(1, "Computers");
             Departaments d2 = new Departaments(2, "Electronics");

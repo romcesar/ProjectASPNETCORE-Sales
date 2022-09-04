@@ -6,11 +6,9 @@ using System.Linq;
 
 namespace SalesWeb.ASPNETCORE.Models.Entities
 {
-    [Table("Departaments")]
     public class Departaments
     {
-        [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         public string name { get; set; }
 
         public ICollection<Sellers> Sellers { get; set; } = new List<Sellers>();
@@ -22,7 +20,7 @@ namespace SalesWeb.ASPNETCORE.Models.Entities
 
         public Departaments(int id, string name)
         {
-            this.id = id;
+            this.Id = id;
             this.name = name;
         }
 
