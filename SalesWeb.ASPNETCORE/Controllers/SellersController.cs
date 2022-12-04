@@ -8,6 +8,7 @@ using SalesWeb.ASPNETCORE.Service.Exceptions;
 using SalesWeb.ASPNETCORE.Models;
 using System.Diagnostics;
 using System;
+using System.Threading.Tasks;
 
 namespace SalesWeb.ASPNETCORE.Controllers
 {
@@ -21,16 +22,17 @@ namespace SalesWeb.ASPNETCORE.Controllers
             _sellersService = sellers;
             _departamentsService = departamentsService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _sellersService.FindAll();
+            var list = await _sellersService.FindAllAsync();
 
             return View(list);
         }
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var departaments = _departamentsService.FindAll();
+
+            var departaments = await _departamentsService.FindAllAsync();
             var viewModel = new SellersFormViewModel { Departaments = departaments };
 
             return View(viewModel);
@@ -38,23 +40,27 @@ namespace SalesWeb.ASPNETCORE.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Sellers sellers)
+        public async Task<IActionResult> Create(Sellers sellers)
         {
-            _sellersService.Insert(sellers);
+            if (!ModelState.IsValid)
+            {
+                var departaments =  await _departamentsService.FindAllAsync();
+                var viewModel = new SellersFormViewModel { Departaments = departaments };
+
+                return View(viewModel);
+            }
+            await _sellersService.InsertAsync(sellers);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return View("Error");
             }
 
-            var obj = _sellersService
-                .
-                
-                FindById(id.Value);
+            var obj = await _sellersService.FindByIdAsync(id.Value);
 
             if (obj == null)
             {
@@ -66,14 +72,14 @@ namespace SalesWeb.ASPNETCORE.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _sellersService.Remove(id);
+           await _sellersService.RemoveAsync(id);
 
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
 
             if (id == null)
@@ -81,7 +87,7 @@ namespace SalesWeb.ASPNETCORE.Controllers
                 return View("Error");
             }
 
-            var obj = _sellersService.FindById(id.Value);
+            var obj = await _sellersService.FindByIdAsync(id.Value);
 
             if (obj == null)
             {
@@ -91,27 +97,27 @@ namespace SalesWeb.ASPNETCORE.Controllers
             return View(obj);
         } 
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if(id == null)
             {
                 return RedirectToAction(nameof(Error), new {message = "Id not provided"});
             }
-            var obj = _sellersService.FindById(id.Value);
+            var obj = await _sellersService.FindByIdAsync(id.Value);
 
             if(obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
-            List<Departaments> departaments = _departamentsService.FindAll();
+            List<Departaments> departaments = await _departamentsService.FindAllAsync();
 
             var viewModel = new SellersFormViewModel { Departaments = departaments, Sellers = obj };
 
             return View(viewModel);
         }
         [HttpPost]
-        public IActionResult Edit(int id, Sellers sellers)
+        public async Task<IActionResult> Edit(int id, Sellers sellers)
         {
             if(id != sellers.id)
             {
@@ -120,7 +126,7 @@ namespace SalesWeb.ASPNETCORE.Controllers
 
             try
             {
-                _sellersService.Update(sellers);
+               await _sellersService.UpdateAsync(sellers);
 
                 return RedirectToAction(nameof(Index));
             }

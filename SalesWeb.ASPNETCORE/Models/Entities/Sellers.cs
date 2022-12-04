@@ -10,22 +10,27 @@ namespace SalesWeb.ASPNETCORE.Models.Entities
         [Display(Name ="Id")]
         public int id { get; set; }
 
+        [Required(ErrorMessage ="{0} required")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "Size shoud between {2} and {1}")]
         [Display(Name = "Name")]
         public string name { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
         [Display(Name ="Email")]
         [DataType(DataType.EmailAddress)]
         public string email { get; set; }
 
 
+        [Required(ErrorMessage = "{0} required")]
         [Display(Name = "Bith Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyy}")]
         public DateTime bithDate { get; set; }
 
-
+        [Required(ErrorMessage = "{0} required")]
         [Display(Name = "Salary Base")]
         [DisplayFormat(DataFormatString ="{0:f2}")]
+        [Range(100.0, 50000.0, ErrorMessage = "{0} must be from {1} to {2}")]
         public double baseSalary { get; set; }
 
 

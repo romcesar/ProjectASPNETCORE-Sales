@@ -2,6 +2,8 @@
 using SalesWeb.ASPNETCORE.Models.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SalesWeb.ASPNETCORE.Service
 {
@@ -14,9 +16,9 @@ namespace SalesWeb.ASPNETCORE.Service
 			_context = context;
 		}
 
-		public List<Departaments> FindAll()
+		public async Task<List<Departaments>> FindAllAsync()
 		{
-			return _context.Departaments.OrderBy(x => x.name).ToList();
+			return await _context.Departaments.OrderBy(x => x.name).ToListAsync();
 			
 		}
 	}
